@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/jpareststarter/api/login";
+const URL = "http://localhost:8080/jpareststarter";
  
 function handleHttpErrors(res) {
  if (!res.ok) {
@@ -31,7 +31,10 @@ const login = (user, password) => {
       .then(res => {setToken(res.token) })
 
 }
-const fetchData = () => {/*TODO */  }
+const fetchData = () => {
+    const options = makeOptions("GET", true);
+    return fetch(URL + "/api/info/user", options).then(handleHttpErrors);
+}
 const makeOptions= (method,addToken,body) =>{
    var opts = {
      method: method,

@@ -28,7 +28,9 @@ function LogIn({ login }) {
 function LoggedIn() {
   const [dataFromServer, setDataFromServer] = useState("Loading...")
   
-  useEffect(() => { /*TODO*/}, [])
+  useEffect(() => { 
+    facade.fetchData().then(data => setDataFromServer(data.msg));
+  }, [])
  
   return (
     <div>
@@ -42,7 +44,10 @@ function LoggedIn() {
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
  
-  const logout = () => { /*TODO*/ } 
+  const logout = () => { 
+    facade.logout();
+    setLoggedIn(false);
+  } 
   const login = (user, pass) => {
     facade.login(user,pass)
     .then(res =>setLoggedIn(true));
